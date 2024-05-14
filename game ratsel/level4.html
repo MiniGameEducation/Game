@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rätsel</title>
+    <script src="phaser.min.js"></script>
+</head>
+
+<body>
+    <div id="container"></div>
+    <script>
+        var config = {
+            type: Phaser.AUTO,
+            backgroundColor: 'white',
+            scale: {
+                mode: Phaser.Scale.ENVELOP,
+                parent: 'container',
+                width: 5000,
+                height: 3333
+            },
+            scene: {
+                preload: preload,
+                create: create
+
+            }
+        };
+        var game = new Phaser.Game(config);
+
+        function preload() {
+            this.load.image('bg', 'bg.jpg');
+            this.load.image('bg3', 'bg3.jpg'); 
+            this.load.image('level 4', 'level 4.png');
+            this.load.image('soal4', 'soal4.png');
+            this.load.image('merah', 'merah.png'); 
+            this.load.image('hitam', 'hitam.png');
+            this.load.image('hijau', 'hijau.png');
+            this.load.image('ungu', 'ungu.png'); 
+            this.load.image('biru', 'biru.png'); 
+            this.load.image('kuning', 'kuning.png');
+            this.load.image('silang', 'silang.png');
+            this.load.image('centang', 'centang.png');
+        }
+
+        function create() {
+            this.add.image(0, 0, 'bg').setOrigin(0);
+
+          
+            var bg3 = this.add.image(2500, 1200, 'bg3').setScale(0.-2);
+            var level4 = this.add.image(2500, 500, 'level 4').setScale(1.5);
+            var soal4 = this.add.image(2500, 800, 'soal4').setScale(1.4);
+            var merah = this.add.image(1700, 1400, 'merah').setScale(1.4);
+            var hitam = this.add.image(2000, 1900, 'hitam').setScale(1.4);
+            var hijau = this.add.image(2900, 1900, 'hijau').setScale(1.4);
+            var ungu = this.add.image(3300, 1400, 'ungu').setScale(1.4);
+            var biru = this.add.image(2500, 1400, 'biru').setScale(1.4);
+            var kuning = this.add.image(2500, 1200, 'kuning').setScale(1.4);
+            var silang = this.add.image(3000, 1200, 'silang').setScale(0.3);
+            var centang = this.add.image(3000, 1400, 'centang').setScale(0.3);
+        }
+    </script>
+</body>
+
+</html>
