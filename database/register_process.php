@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_FILES['foto']) && $_FILES['foto']['error'] === UPLOAD_ERR_OK) {
         $foto_tmp_name = $_FILES['foto']['tmp_name'];
         $foto_name = basename($_FILES['foto']['name']);
-        $foto_path = 'uploads/' . $foto_name;
+        $foto_path = '../tampilanUtama/uploads/' . $foto_name;
 
         // Ensure the 'uploads' directory is writable
         if (!is_dir('uploads')) {
@@ -61,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($conn->query($sql_user) === TRUE) {
         $response["success"] = true;
         $response["message"] = "Registration successful.";
-        header("location: register.php"); // Remove single quotes
+        header("location: ../form/form.php"); // Remove single quotes
         exit();
     } else {
         $response["success"] = false;

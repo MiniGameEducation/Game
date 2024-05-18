@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form Rätsel</title>
-    <link rel="stylesheet" href="../css/form-style.css">
+    <link rel="stylesheet" href="form-style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -14,14 +14,8 @@
 <body>
     <div class="container" id="container">
         <div class="form-container sign-up">
-        <form action="database/register_process.php" method="post" enctype="multipart/form-data">
+        <form action="../database/register_process.php" method="post" enctype="multipart/form-data">
     <h1>Create Account</h1>
-    <div class="social-icons">
-        <a href="" class="icon"><i class="fa-brands fa-google"></i></a>
-        <a href="" class="icon"><i class="fa-brands fa-facebook"></i></a>
-        <a href="" class="icon"><i class="fa-brands fa-instagram"></i></a>
-        <a href="" class="icon"><i class="fa-brands fa-github"></i></a>
-    </div>
     <span>or use your email for registration</span>
     <input type="text" placeholder="Name" name="reg_username" required>
     <input type="email" placeholder="Email" name="reg_email" required>
@@ -35,14 +29,8 @@
 
         </div>
         <div class="form-container sign-in">
-            <form action="database/login_process.php" method="post">
+            <form action="../database/login_process.php" method="post">
                 <h1>Sign In</h1>
-                <div class="social-icons">
-                    <a href="" class="icon"><i class="fa-brands fa-google"></i></a>
-                    <a href="" class="icon"><i class="fa-brands fa-facebook"></i></a>
-                    <a href="" class="icon"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="" class="icon"><i class="fa-brands fa-github"></i></a>
-                </div>
                 <span>or use your email for login</span>
                 <input type="text" placeholder="Name" name="username" required>
                 <input type="password" placeholder="Password" name="password" required>

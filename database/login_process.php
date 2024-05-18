@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['id'] = $row['id'];  // Store user ID in session
         $response["success"] = true;
         $response["message"] = "Login berhasil.";
-        header("Location: mainMenu.php");
+        header("Location:../tampilanUtama/mainMenu.php");
         exit();
     } else {
         $response["success"] = false;
