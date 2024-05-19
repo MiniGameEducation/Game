@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rätsel</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="menu-item" id="study" onclick="activatePage('study')">
+                <img src="castle.png" alt="Study Icon">
+                <span>STUDY</span>
+            </div>
+            <div class="menu-item" id="profile" onclick="activatePage('profile')">
+                <img src="profile.png" alt="Profile Icon">
+                <span>PROFILE</span>
+            </div>
+            <div class="menu-item" id="leaderboard" onclick="activatePage('leaderboard')">
+                <img src="trophy.png" alt="Leaderboard Icon">
+                <span>LEADERBOARD</span>
+            </div>
+        </div>
+        <div class="content">
+            <div id="study-content" class="content-page">
+                <div class="level-grid">
+                    <div class="level">1</div>
+                    <div class="level">2</div>
+                    <div class="level">3</div>
+                    <div class="level">4</div>
+                    <div class="level">5</div>
+                </div>
+            </div>
+            <div id="profile-content" class="content-page hidden">
+                <h1>Profile Page</h1>
+            </div>
+            <div id="leaderboard-content" class="content-page hidden">
+                <h1>Leaderboard Page</h1>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
