@@ -129,6 +129,10 @@ input[type=text]{
     margin: 10% auto -20% auto ;
 }
 
+ul{
+    list-style: none;
+}
+
 .level-bawah{
     display: flex;
     align-items: center;

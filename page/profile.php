@@ -18,9 +18,8 @@ if ($data = mysqli_fetch_array($hasil)) {
 ?>
     <form method="post" action="proses_profile.php" class="profile" enctype="multipart/form-data">
         <div class="img-profile">
-            <img src="<?php echo"".$data['foto']; ?>" alt="Profile Picture" width="100==" height="100">
+            <img src="<?php echo "" . $data['foto']; ?>" alt="Profile Picture" width="100==" height="100">
         </div>
-        <div class="img-listrik"></div>
         <div class="profile-txt">
             <input type="text" value="<?php echo $data['username'] ?>" readonly>
             <input type="text" value="<?php echo $data['score'] ?>" readonly>
