@@ -186,13 +186,11 @@ ul{
 
 .tbl-leaderboard-judul-no{
     border-bottom: 5px solid #626262;
-    border-right: 5px solid #626262;
     padding: 20px 25px;
 }
 
 .tbl-leaderboard-judul-username{
     border-bottom: 5px solid #626262;
-    border-right: 5px solid #626262;
     padding: 20px 25px;
 }
 
@@ -202,13 +200,11 @@ ul{
 }
 .tbl-leaderboard-list-no{
     border-bottom: 5px solid #626262;
-    border-right: 5px solid #626262;
     padding: 20px 25px;
 }
 
 .tbl-leaderboard-list-username{
     border-bottom: 5px solid #626262;
-    border-right: 5px solid #626262;
     width: 900px;
     margin-left: 20px;
 }
@@ -220,4 +216,21 @@ ul{
 .tbl-leaderboard-no{
     border-bottom: 5px solid #626262;
     padding-right: 30px;
+}
+
+th {
+    background-color: #1e1e1e;
+}
+
+tr:nth-child(even) {
+    background-color:#1e1e1e;
+}
+
+tr:nth-child(odd) {
+    background-color:#1e1e1e;
+}
+
+tr:hover {
+    background-color: #3498db;
+    transition: background-color 0.3s ease;
 }
