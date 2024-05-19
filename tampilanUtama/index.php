@@ -14,7 +14,7 @@
 <body>
     <div class="container" id="container">
         <div class="form-container sign-up">
-        <form action="database/register_process.php" method="post" enctype="multipart/form-data">
+        <form action="../database/register_process.php" method="post" enctype="multipart/form-data">
     <h1>Create Account</h1>
     <span>or use your email for registration</span>
     <input type="text" placeholder="Name" name="reg_username" required>
@@ -29,7 +29,7 @@
 
         </div>
         <div class="form-container sign-in">
-            <form action="database/login_process.php" method="post">
+            <form action="../sdatabase/login_process.php" method="post">
                 <h1>Sign In</h1>
                 <span>or use your email for login</span>
                 <input type="text" placeholder="Name" name="username" required>
