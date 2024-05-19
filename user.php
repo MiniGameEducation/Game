@@ -28,7 +28,7 @@
             <li class="sidebar-item <?php if(isset($_GET['page']) && $_GET['page'] === 'leaderboard') echo 'active' ?>"><img src="img/leaderboard.png" class="leaderboard"><span>LEADERBOARD</span></li>
         </a>
         <a href="logout.php"> <!-- Tambahkan link logout di sini -->
-            <li class="sidebar-item"><img src="img/logout.png" class="logout"><span>LOGOUT</span></li>
+            <li class="sidebar-item"><img src="img/logout.png" class="logout"><span>LOG OUT</span></li>
         </a>
     </ul>
 </div>
