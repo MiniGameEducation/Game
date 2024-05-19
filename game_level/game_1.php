@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game</title>
-    <link rel="stylesheet" href="level1
+    <link rel="stylesheet" href="level1.css"
     .css">
     
     <!-- Feathericons -->
