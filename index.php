@@ -15,43 +15,42 @@
     <div class="container" id="container">
         <div class="form-container sign-up">
         <form action="database/register_process.php" method="post" enctype="multipart/form-data">
-    <h1>Create Account</h1>
-    <span>or use your email for registration</span>
-    <input type="text" placeholder="Name" name="reg_username" required>
+    <h1>Buat Akun</h1>
+    <span>atau gunakan email untuk daftar</span>
+    <input type="text" placeholder="Nama" name="reg_username" required>
     <input type="email" placeholder="Email" name="reg_email" required>
     <input type="password" placeholder="Password" name="reg_password" required>
     <input type="password" placeholder="Verify Password" name="reg_verify_password" required>
-    <label for="file-upload" class="file-input-button">Choose File For Profile Photo</label>
+    <label for="file-upload" class="file-input-button">Pilih File Untuk Foto Profile</label>
     <input type="file" name="foto" id="file-upload">
-    <span id="file-name">No file chosen</span>
-    <input type="submit" value="Sign Up" name="submit">
+    <span id="file-name">Tidak Ada File Terpilih</span>
+    <input type="submit" value="Daftar" name="submit">
 </form>
 
         </div>
         <div class="form-container sign-in">
             <form action="database/login_process.php" method="post">
-                <h1>Sign In</h1>
-                <span>or use your email for login</span>
-                <input type="text" placeholder="Name" name="username" required>
+                <h1>Masuk</h1>
+                <span>atau gunakan email untuk Masuk</span>
+                <input type="text" placeholder="Nama" name="username" required>
                 <input type="password" placeholder="Password" name="password" required>
-                <a href="">Forgot Your Password?</a>
-                <input type="submit" value="Sign In" name="submit">
+                <a href="">Lupa Password Anda?</a>
+                <input type="submit" value="Masuk" name="submit">
             </form>
         </div>
         <div class="toggle-container">
             <div class="toggle">
                 <div class="toggle-panel toggle-left">
-                    <h1>Welcome Back</h1>
+                    <h1>Selamat Datang Kembali</h1>
                     <p>
-                        Enter your personal details to use all of site features
+                    Masukkan detail pribadi Anda untuk menggunakan semua fitur situs
                     </p>
                     <input type="submit" class="hidden" value="Sign In" id="login" name="signin">
                 </div>
                 <div class="toggle-panel toggle-right">
-                    <h1>Hello, Friend!</h1>
+                    <h1>Hallo, Teman!</h1>
                     <p>
-                        Register with your personal details to use all of site features
-                    </p>
+                    Daftarkan detail pribadi Anda untuk menggunakan semua fitur situs                    </p>
                     <input type="submit" class="hidden" value="Sign Up" id="register" name="signup">
                 </div>
             </div>

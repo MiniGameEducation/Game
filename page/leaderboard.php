@@ -26,8 +26,8 @@ if ($result->num_rows > 0) {
     echo "<table class='tbl-leaderboard'>
             <tr>
                 <th class='tbl-leaderboard-judul-no'>No</th>
-                <th class='tbl-leaderboard-judul-username'>Username</th>
-                <th class='tbl-leaderboard-judul-score'>Score</th>
+                <th class='tbl-leaderboard-judul-username'>Nama</th>
+                <th class='tbl-leaderboard-judul-score'>Skor</th>
             </tr>";
     $no = 1; // Inisialisasi variabel counter
     while ($row = $result->fetch_assoc()) {

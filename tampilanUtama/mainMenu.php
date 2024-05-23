@@ -19,16 +19,16 @@
             <div class="sidebar-item">
     <ul class="sidebar-itemlist">
         <a href="mainMenu.php?page=study">
-            <li class="sidebar-item <?php if(isset($_GET['page']) && $_GET['page'] === 'study') echo 'active' ?>"><img src="../img/Benteng.png"><span>STUDY</span></li>
+            <li class="sidebar-item <?php if(isset($_GET['page']) && $_GET['page'] === 'study') echo 'active' ?>"><img src="../img/Benteng.png"><span>BELAJAR</span></li>
         </a>
         <a href="mainMenu.php?page=profile">
-            <li class="sidebar-item <?php if(isset($_GET['page']) && $_GET['page'] === 'profile') echo 'active' ?>"><img src="../img/Profile.png"><span>PROFILE</span></li>
+            <li class="sidebar-item <?php if(isset($_GET['page']) && $_GET['page'] === 'profile') echo 'active' ?>"><img src="../img/Profile.png"><span>PROFIL</span></li>
         </a>
         <a href="mainMenu.php?page=leaderboard">
-            <li class="sidebar-item <?php if(isset($_GET['page']) && $_GET['page'] === 'leaderboard') echo 'active' ?>"><img src="../img/leaderboard.png" class="leaderboard"><span>LEADERBOARD</span></li>
+            <li class="sidebar-item <?php if(isset($_GET['page']) && $_GET['page'] === 'leaderboard') echo 'active' ?>"><img src="../img/leaderboard.png" class="leaderboard"><span>PAPAN SKOR</span></li>
         </a>
         <a href="../database/logout.php"> <!-- Tambahkan link logout di sini -->
-            <li class="sidebar-item"><img src="../img/logout.png" class="logout"><span>LOGOUT</span></li>
+            <li class="sidebar-item"><img src="../img/logout.png" class="logout"><span>KELUAR</span></li>
         </a>
     </ul>
 </div>
