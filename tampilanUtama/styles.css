@@ -53,8 +53,27 @@ a {
     color: #e5e5e5;
     width: 303px;
     height: 90px;
-    border: 1px solid wheat;
+    border: none;
     border-radius: 25px;
+}
+.sidebar-itemlist .sidebar-item:hover {
+    border:  3px solid #5E9FFF; 
+    transform: scale(1.05); 
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); 
+    color:#5E9FFF ;
+}
+
+.sidebar-itemlist .sidebar-item.active{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    list-style: none;
+    color: #e5e5e5;
+    width: 303px;
+    height: 90px;
+    border: 3px solid #5E9FFF;
+    border-radius: 25px;
+    color:#5E9FFF ;
 }
 
 .leaderboard {
@@ -154,12 +173,24 @@ ul{
 
 .level-atas .level-item,
 .level-bawah .level-item{
-    background: purple;
+    background: #8B00FA;
     padding: 20px 40px;
     justify-content: space-between;
-    box-shadow: 0px 10px rgb(100, 1, 100);
+    box-shadow: 0px 10px #4B0087;
     border-radius: 25px;
 }
+.level-atas .level-item:hover,
+.level-bawah .level-item:hover {
+    background: #6A00CC; /* Warna ungu untuk efek hover */
+    box-shadow: 0px 10px #37005C; /* Warna ungu kehitaman untuk efek hover */
+}
+
+.level-item.locked {
+    background: gray;
+    box-shadow: 0px 10px #666;
+    pointer-events: none;
+}
+
 
 .leaderboard{
     display: flex;
@@ -230,7 +261,7 @@ tr:nth-child(odd) {
     background-color:#1e1e1e;
 }
 
-tr:hover {
-    background-color: #3498db;
-    transition: background-color 0.3s ease;
+/* Tambahkan warna biru pada user yang sedang login */
+.tbl-leaderboard-list-active  {
+    color: #3498db; /* Warna biru */
 }

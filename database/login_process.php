@@ -17,6 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
         $_SESSION['id'] = $row['id'];  // Store user ID in session
+        $_SESSION['username'] = $username;
         $response["success"] = true;
         $response["message"] = "Login berhasil.";
         header("Location:../tampilanUtama/mainMenu.php");
