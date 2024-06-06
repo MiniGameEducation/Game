@@ -13,24 +13,25 @@
         <div class="sidebar-logos">
             <div class="hamburger" id="hamburger">&#9776;</div>
             <div class="logo">
-                <a href="admin.php?page=home" <?php if (isset($_GET['page']) && $_GET['page'] === 'page/home')?>>RÄTSEL<br>
+                <a href="admin.php?page=home">RÄTSEL<br>
                 <span>ADMIN</span></a>
             </div>
         </div>
         <div class="sidebar-item">
             <ul class="main-menu">
-                <li class="user"><a href="admin.php?page=home" <?php if (isset($_GET['page']) && $_GET['page'] === 'page/home')?>>Users</a></li>
+                <li class="user"><a href="admin.php?page=home">Users</a></li>
                 <li class="kategori-menu">
                     <a href="#" id="kategori-link">Kategori</a>
                 </ul>
                     <ul class="submenu" id="submenu">
-                        <li><a href="matematika.html">Matematika</a></li>
-                        <li><a href="fisika.html">Fisika</a></li>
-                        <li><a href="bahasa.html">Bahasa</a></li>
-                        <li><a href="ilmu.html">Ilmu Sosial</a></li>
-                        <li><a href="tekno.html">Teknologi dan Komputer</a></li>
-                        <li><a href="biologi.html">Biologi</a></li>
-                        <li><a href="ekonomi.html">Ekonomi</a></li>
+                        <li><a href="admin.php?page=agama">Agama</a></li>
+                        <li><a href="admin.php?page=matematika">Matematika</a></li>
+                        <li><a href="admin.php?page=bahasaindo">Bahasa Indonesia</a></li>
+                        <li><a href="admin.php?page=bahasainggris">Bahasa Inggris</a></li>
+                        <li><a href="admin.php?page=sejarah">Sejarah</a></li>
+                        <li><a href="admin.php?page=informatika">Informatika</a></li>
+                        <li><a href="admin.php?page=ipas">IPAS</a></li>
+
                     </ul>
         </div>
     </nav>
@@ -52,14 +53,29 @@
                     case 'home':
                         include "page/home.php";
                         break;
-                    case 'profile':
-                        include "/page/profile.php";
+                    case 'agama':
+                        include "page/agama.php";
                         break;
-                    case 'leaderboard':
-                        include "/page/leaderboard.php";
+                    case 'bahasaindo';
+                        include "page/bahasaindo.php";
+                        break;
+                    case 'bahasainggris';
+                        include "page/bahasainggris.php";
+                        break;
+                    case 'sejarah';
+                        include "page/sejarah.php";
+                        break;
+                    case 'informatika';
+                        include "page/informatika.php";
+                        break;
+                    case 'ipas';
+                        include "page/ipas.php";
+                        break;
+                    case 'matematika';
+                        include "page/matematika.php";
                         break;
                     default:
-                        echo "<script>alert('Maaf. Halaman tidak ditemukan!'); window.location.href = 'index.php';</script>";
+                        echo "<script>alert('Maaf. Halaman tidak ditemukan!'); window.location.href = '../index.php';</script>";
                 }
             } else {
                 include "page/home.php";
