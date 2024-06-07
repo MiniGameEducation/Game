@@ -24,7 +24,7 @@ body {
     cursor: pointer;
     color: white;
     position: fixed;
-    left: 15px;    
+    left: 15px;
     background-color: transparent;
     padding: 6px;
     border-radius: 4px;
@@ -233,7 +233,7 @@ tr:hover {
     cursor: pointer;
 }
 
-.kategori-menu > a::after {
+.kategori-menu>a::after {
     content: " ▼";
     font-size: 12px;
     margin-left: 10px;
@@ -319,7 +319,8 @@ tr:hover {
         margin-top: 70px;
     }
 
-    th, td {
+    th,
+    td {
         padding: 10px;
         font-size: 14px;
     }
@@ -358,7 +359,8 @@ tr:hover {
         top: 98%;
     }
 
-    th, td {
+    th,
+    td {
         padding: 5px;
         font-size: 12px;
     }
@@ -375,4 +377,77 @@ tr:hover {
     .sidebar .main-menu .kategori-menu a {
         font-size: 14px;
     }
+}
+
+textarea{
+    font-size: 100px;
+}
+
+.table-body h1 {
+    margin-left: 30px;
+    color: #E5E5E5;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    text-align: center;
+}
+
+table {
+    border-collapse: collapse;
+    margin: 10px;
+}
+
+td {
+    padding-right: 20px;
+    text-align: center;
+}
+
+.table-body .text {
+    width: 700px;
+    height: 30px;
+    padding: 20px;
+    font-size: 20px;
+    color: #E5E5E5;
+    background-color: #4B4B4B;
+    border: 1px solid #E5E5E5;
+    overflow: hidden;
+}
+
+.table-body .text1 {
+    width: 700px;
+    height: 30px;
+    padding: 20px;
+    font-size: 20px;
+    margin-left: 20px;
+    color: #E5E5E5;
+    background-color: #4B4B4B;
+    border: 1px solid #E5E5E5;
+    overflow: hidden;
+}
+
+.pagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin-left: 650px;
+}
+
+.page-item {
+    margin: 0 5px;
+}
+
+.page-link {
+    display: block;
+    padding: 10px 15px;
+    background: #8B00FA;
+    color: #E5E5E5;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.page-item.active .page-link {
+    background: #6600b9;
+}
+
+.page-item .page-link:hover {
+    background: #6600b9;
 }
