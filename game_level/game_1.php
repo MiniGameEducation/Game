@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game</title>
-    <link rel="stylesheet" href="level1
-    .css">
+    <link rel="stylesheet" href="level1.css">
     
     <!-- Feathericons -->
     <script src="https://unpkg.com/feather-icons"></script>
