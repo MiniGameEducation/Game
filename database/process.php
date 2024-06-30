@@ -12,57 +12,85 @@ $response = array();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_SESSION['id'])) {
-        $userId = $_SESSION['id'];  // Mengambil ID pengguna dari sesi
+        $userId = $_SESSION['id'];
 
-        if (isset($_POST["answer"]) && isset($_POST["start_time"]) && isset($_POST["level_id"])) {
-            $userAnswer = $_POST['answer'];
-            $startTime = $_POST['start_time'];
+        if (isset($_POST["answer"]) && isset($_POST["start_time"]) && isset($_POST["question_id"]) && isset($_POST["level_id"])) {
+            $userAnswer = (int)$_POST['answer']; // Cast to integer
+            $startTime = (int)$_POST['start_time']; // Cast to integer
             $endTime = time();
             $timeTaken = $endTime - $startTime;
-            $levelId = $_POST['level_id'];
+            $levelId = (int)$_POST['level_id']; // Cast to integer
+            $questionId = (int)$_POST['question_id']; // Cast to integer
 
-            $correctAnswer = "Aku ingin makan roti";
+            // Mengambil jawaban yang benar dari database berdasarkan question_id
+            $sqlCorrectAnswer = "SELECT correct_choice FROM question WHERE id = ?";
+            $stmtCorrectAnswer = $conn->prepare($sqlCorrectAnswer);
+            if ($stmtCorrectAnswer === false) {
+                die("Prepare failed: " . $conn->error);
+            }
+            $stmtCorrectAnswer->bind_param("i", $questionId);
+            if ($stmtCorrectAnswer->execute() === false) {
+                die("Execute failed: " . $stmtCorrectAnswer->error);
+            }
 
-            if ($userAnswer === $correctAnswer) {
-                $score = ($timeTaken <= 60) ? 100 : 85;
+            $result = $stmtCorrectAnswer->get_result();
+            if ($result === false) {
+                die("Getting result set failed: " . $stmtCorrectAnswer->error);
+            }
+
+            $correctAnswerRow = $result->fetch_assoc();
+            $correctAnswer = (int)$correctAnswerRow['correct_choice']; // Cast to integer
+            $stmtCorrectAnswer->close();
+
+            // Mengecek apakah jawaban pengguna benar
+            if ($userAnswer === $correctAnswer) { // Use === for strict comparison
+                if ($timeTaken <= 60) {
+                    $score = 100;
+                } else {
+                    $score = 85;
+                }
             } else {
                 $score = 0;
             }
 
+            // Memperbarui skor pengguna di tabel user
             $sqlUpdateScore = "UPDATE user SET score = score + ? WHERE id = ?";
-            $stmt = $conn->prepare($sqlUpdateScore);
-            $stmt->bind_param("ii", $score, $userId);
-
-            if ($stmt->execute()) {
-                // Save the game state to autosave table
-                $sqlAutosave = "INSERT INTO autosave (user_id, level_id) VALUES (?, ?)
-                                ON DUPLICATE KEY UPDATE level_id = ?";
-                $stmtAutosave = $conn->prepare($sqlAutosave);
-                $stmtAutosave->bind_param("iii", $userId, $levelId, $levelId);
-
-                if ($stmtAutosave->execute()) {
-                    header("location:../tampilanUtama/mainMenu.php");
-                } else {
-                    $response["success"] = false;
-                    $response["message"] = "Error: " . $stmtAutosave->error;
-                }
-                $stmtAutosave->close();
-            } else {
-                $response["success"] = false;
-                $response["message"] = "Error: " . $stmt->error;
+            $stmtUpdateScore = $conn->prepare($sqlUpdateScore);
+            if ($stmtUpdateScore === false) {
+                die("Prepare failed: " . $conn->error);
             }
-            $stmt->close();
+            $stmtUpdateScore->bind_param("ii", $score, $userId);
+            if ($stmtUpdateScore->execute() === false) {
+                die("Execute failed: " . $stmtUpdateScore->error);
+            }
+
+            // Menyimpan status permainan ke tabel autosave
+            $sqlAutosave = "INSERT INTO autosave (user_id, level_id) VALUES (?, ?)
+                            ON DUPLICATE KEY UPDATE level_id = ?";
+            $stmtAutosave = $conn->prepare($sqlAutosave);
+            if ($stmtAutosave === false) {
+                die("Prepare failed: " . $conn->error);
+            }
+            $stmtAutosave->bind_param("iii", $userId, $levelId, $levelId);
+            if ($stmtAutosave->execute() === false) {
+                die("Execute failed: " . $stmtAutosave->error);
+            }
+
+            $response['status'] = 'success';
+            $response['score'] = $score;
+            $stmtUpdateScore->close();
+            $stmtAutosave->close();
         } else {
-            $response["success"] = false;
-            $response["message"] = "Some fields are missing.";
+            $response['status'] = 'error';
+            $response['message'] = 'Invalid input data.';
         }
     } else {
-        $response["success"] = false;
-        $response["message"] = "User is not logged in.";
+        $response['status'] = 'error';
+        $response['message'] = 'User is not logged in.';
     }
 } else {
-    $response["success"] = false;
-    $response["message"] = "HTTP method not supported.";
+    $response['status'] = 'error';
+    $response['message'] = 'Invalid request method.';
 }
 
 echo json_encode($response);

@@ -61,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($conn->query($sql_user) === TRUE) {
         $response["success"] = true;
         $response["message"] = "Registration successful.";
-        header("location: ../form.php"); // Remove single quotes
+        header("location: ../index.php"); // Remove single quotes
         exit();
     } else {
         $response["success"] = false;

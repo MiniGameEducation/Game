@@ -3,7 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <link rel="icon" type="image/x-icon" href="../img/Ratsel.png"/>
     <title>Halaman Admin</title>
     <link rel="stylesheet" href="admin.css?v=<?php echo time(); ?>">
 </head>
@@ -16,13 +17,13 @@
                 <li class="kategori-menu">
                     <a href="#" id="kategori-link">Kategori</a>
                     <ul class="submenu" id="submenu">
-                        <a href="admin.php?page=agama"><li>Agama</li></a>
-                        <a href="admin.php?page=matematika"><li>Matematika</li></a>
-                        <a href="admin.php?page=bahasaindo"><li>Bahasa Indonesia</li></a>
-                        <a href="admin.php?page=bahasainggris"><li>Bahasa Inggris</li></a>
-                        <a href="admin.php?page=sejarah"><li>Sejarah</li></a>
-                        <a href="admin.php?page=informatika"><li>Informatika</li></a>
-                        <a href="admin.php?page=ipas"><li>IPAS</li></a>
+                        <a href="admin.php?page=matematika"><li>MATEMATIKA</li></a>
+                        <a href="admin.php?page=fisika"><li>FISIKA</li></a>
+                        <a href="admin.php?page=bahasa"><li>BAHASA</li></a>
+                        <a href="admin.php?page=ilmusosial"><li>ILMU SOSIAL</li></a>
+                        <a href="admin.php?page=tekompu"><li>TEKNOLOGI DAN KOMPUTER</li></a>
+                        <a href="admin.php?page=ekonomi"><li>EKONOMI</li></a>
+                        <a href="admin.php?page=biologi"><li>BIOLOGI</li></a>
                     </ul>
                 </li>
             </ul>
@@ -37,26 +38,26 @@
                 case 'home':
                     include "page/home.php";
                     break;
-                case 'agama':
-                    include "page/agama.php";
-                    break;
-                case 'bahasaindo':
-                    include "page/bahasaindo.php";
-                    break;
-                case 'bahasainggris':
-                    include "page/bahasainggris.php";
-                    break;
-                case 'sejarah':
-                    include "page/sejarah.php";
-                    break;
-                case 'informatika':
-                    include "page/informatika.php";
-                    break;
-                case 'ipas':
-                    include "page/ipas.php";
-                    break;
                 case 'matematika':
                     include "page/matematika.php";
+                    break;
+                case 'fisika':
+                    include "page/fisika.php";
+                    break;
+                case 'bahasa':
+                    include "page/bahasa.php";
+                    break;
+                case 'ilmusosial':
+                    include "page/ilmusosial.php";
+                    break;
+                case 'tekompu':
+                    include "page/tekompu.php";
+                    break;
+                case 'ekonomi':
+                    include "page/ekonomi.php";
+                    break;
+                case 'biologi':
+                    include "page/biologi.php";
                     break;
                 default:
                     echo "<script>alert('Maaf. Halaman tidak ditemukan!'); window.location.href = '../index.php';</script>";
@@ -85,4 +86,3 @@
 </body>
 
 </html>
-

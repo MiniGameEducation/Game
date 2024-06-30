@@ -1,3 +1,53 @@
+<?php
+// Mulai sesi
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Include file koneksi database
+include "../database/koneksi.php";
+
+// Pastikan user telah login
+if (!isset($_SESSION["id"])) {
+    die("User is not logged in.");
+}
+
+// Ambil ID pengguna yang sedang login
+$userId = $_SESSION["id"];
+
+// Ambil kategori yang dipilih
+$sql = "SELECT last_selected_kategori_id FROM user WHERE id = $userId";
+$result = $conn->query($sql);
+$kategoriId = 0;
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $kategoriId = $row['last_selected_kategori_id'];
+}
+
+// Jika kategori belum dipilih, arahkan ke halaman pemilihan kategori
+if ($kategoriId == 0) {
+    header("Location: select_category.php");
+    exit();
+}
+
+// Kueri untuk mendapatkan level terakhir yang dikerjakan oleh pengguna dalam kategori yang dipilih
+$sql = "SELECT level_id FROM autosave WHERE user_id = $userId AND kategori_id = $kategoriId ORDER BY level_id DESC LIMIT 1";
+$result = $conn->query($sql);
+
+$lastCompletedLevel = 0;
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $lastCompletedLevel = $row['level_id'];
+}
+
+// Tentukan level yang dapat diakses oleh pengguna berdasarkan level terakhir yang dikerjakan
+$accessibleLevels = [];
+for ($i = 1; $i <= $lastCompletedLevel + 1; $i++) {
+    $accessibleLevels[$i] = true;
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 

@@ -3,8 +3,6 @@
 include "../database/koneksi.php";
 
 // Mulai sesi
-session_start();
-
 // Pastikan user telah login
 if (!isset($_SESSION["id"])) {
     die("User is not logged in.");

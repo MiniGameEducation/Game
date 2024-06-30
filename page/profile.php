@@ -1,7 +1,6 @@
 <?php
 include "../database/koneksi.php";
 
-session_start();
 
 if (!isset($_SESSION['id'])) {
     echo "Anda harus login terlebih dahulu.";
