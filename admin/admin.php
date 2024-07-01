@@ -98,10 +98,10 @@ for ($i = 1; $i <= $lastCompletedLevel + 1; $i++) {
                 case 'bahasa':
                     include "page/bahasa.php";
                     break;
-                case 'ilmusosial':
+                case 'ilmu sosial':
                     include "page/ilmusosial.php";
                     break;
-                case 'tekompu':
+                case 'teknologi dan komputer':
                     include "page/tekompu.php";
                     break;
                 case 'ekonomi':
