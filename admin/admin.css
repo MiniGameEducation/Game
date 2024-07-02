@@ -41,13 +41,14 @@ body {
     display: block;
     border-radius: 20px;
     padding: 15px;
+    transition: all .3s ease-in-out;
 }
 
 .main-menu > .user a:hover,
 .main-menu > .kategori-menu > #kategori-link:hover {
     background-color: #2e2e2e;
     scale: 1.1;
-    transition: all .2s ease-in-out;
+    transition: all .3s ease-in-out;
 }
 
 .submenu {
@@ -74,7 +75,7 @@ body {
     color: white;
     text-decoration: none;
     border-radius: 20px;
-    padding: 10px;
+    padding: 20px;
     font-size: 12px;
     transition: all .3s ease-in-out;
 
@@ -169,6 +170,7 @@ a{
     background: #6e6e6e;
     border-radius: 20px;
     margin-top: 10px;
+    padding: 20px;
 }
 
 .questions_form .answer,
@@ -182,16 +184,16 @@ a{
     color: pink;
     font-weight: 900;
     font-size: 16px;
-    background-color:rgb(255, 0, 255);
-    box-shadow: 0px  0px 20px 6px #ffaaef;
-    transition: all 0.5s ease-in-out;
+    background-color:rgb(194, 0, 194);
+    box-shadow: 2px 4px #890871;
+    transition: all 0.4s ease-in-out;
 }
 
 .questions_form .answer:focus,
 .questions_form .questions:focus{
     scale: 1.05;
-    transition: all 0.5s ease-in-out;
-    box-shadow: 10px 8px 20px 0px #ffaaef;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 4px 6px 8px #890871;
 }
 
 .judul{
@@ -201,9 +203,11 @@ a{
 }
 
 .update-button{
-    padding: 5px 10px;
+    cursor: pointer;
+    padding: 15px 20px;
     text-decoration: none;
-    border-radius: 0.25rem;
+    border-radius: 20px;
+    box-shadow: 2px 4px #004f0e;
     border: 1px solid #009b1c;
     background-color: #00ff2f;
     color: #E5E5E5;
