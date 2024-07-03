@@ -19,6 +19,8 @@ if ($result->num_rows > 0) {
     $kategoriId = $row['last_selected_kategori_id'];
 }
 
+
+
 // Kueri untuk mendapatkan level terakhir yang dikerjakan oleh pengguna dalam kategori yang dipilih
 $sql = "SELECT level_id FROM autosave WHERE user_id = ? AND kategori_id = ? ORDER BY level_id DESC LIMIT 1";
 $stmt = $conn->prepare($sql);
@@ -31,6 +33,7 @@ if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
     $lastCompletedLevel = $row['level_id'];
 }
+
 
 // Tentukan level yang dapat diakses oleh pengguna berdasarkan level terakhir yang dikerjakan
 $accessibleLevels = [];
@@ -48,6 +51,7 @@ for ($i = 1; $i <= $lastCompletedLevel + 1; $i++) {
     <link rel="icon" type="image/x-icon" href="../img/Ratsel.png" />
     <title>Halaman Admin</title>
     <link rel="stylesheet" href="admin.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -56,7 +60,7 @@ for ($i = 1; $i <= $lastCompletedLevel + 1; $i++) {
             <ul class="main-menu">
                 <li class="user"><a href="admin.php?page=home">Users</a></li>
                 <li class="kategori-menu">
-                    <a href="#" id="kategori-link">Kategori</a>
+                    <a href="#" id="kategori-link">Kategori <i class="fa-solid fa-angle-down"></i></a>
                     <ul class="submenu" id="submenu">
                         <?php
                         $sql = "
@@ -71,7 +75,7 @@ for ($i = 1; $i <= $lastCompletedLevel + 1; $i++) {
                         $result = $stmt->get_result();
                         while ($row = $result->fetch_assoc()) :
                         ?>
-                            <a href="admin.php?page=<?php echo $row['kategori_id']; ?>&level_id=<?php echo $row['level_id']; ?>&page=<?php echo strtolower($row['kategori']); ?>">
+                            <a href="admin.php?level_id=<?php echo $row['level_id']; ?>&page=<?php echo strtolower($row['kategori']); ?>">
                                 <li><?php echo htmlspecialchars($row['kategori']); ?></li>
                             </a>
                         <?php endwhile; ?>
@@ -80,8 +84,6 @@ for ($i = 1; $i <= $lastCompletedLevel + 1; $i++) {
             </ul>
         </div>
     </nav>
-
-    <div class="user-table">
         <?php
         if (isset($_GET['page'])) {
             $page = $_GET['page'];
@@ -117,8 +119,6 @@ for ($i = 1; $i <= $lastCompletedLevel + 1; $i++) {
             include "page/home.php";
         }
         ?>
-    </div>
-
     <script>
         document.getElementById('kategori-link').onclick = function(event) {
             event.preventDefault();

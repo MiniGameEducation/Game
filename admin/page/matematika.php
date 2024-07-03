@@ -34,32 +34,35 @@ $conn->close();
 
 
 <main class="user-table">
-    <form action="../database/update.php" method="post" class="questions_form">
-        <input type="hidden" name="id" value="<?php echo htmlspecialchars($id); ?>">
-        <input type="hidden" name="level_id" value="<?php echo htmlspecialchars($level_id); ?>">
-        <h1 class="judul">Pertanyaan</h1>
-        <input type="text" class="questions" id="question" name="question" value="<?php echo htmlspecialchars($question); ?>">
+        <form action="../database/update.php" method="post" class="questions_form">
+            <input type="hidden" name="id" value="<?php echo htmlspecialchars($id); ?>">
+            <input type="hidden" name="level_id" value="<?php echo htmlspecialchars($level_id); ?>">
+            <h1 class="judul">Pertanyaan</h1>
+            <input type="text" class="questions" id="question" name="question" value="<?php echo htmlspecialchars($question); ?>">
 
-        <h1 class="judul">Jawaban</h1>
-        <input type="text" class="answer" id="answer1" name="answer1" value="<?php echo htmlspecialchars($answer1); ?>">
-        <input type="text" class="answer" id="answer2" name="answer2" value="<?php echo htmlspecialchars($answer2); ?>">
-        <input type="text" class="answer" id="answer3" name="answer3" value="<?php echo htmlspecialchars($answer3); ?>">
-        <input type="text" class="answer" id="answer4" name="answer4" value="<?php echo htmlspecialchars($answer4); ?>">
+            <div class="answer_input">
+                <div class="answer_input_items">
+                    <h1 class="judul">Jawaban</h1>
+                    <input type="text" class="answer" id="answer1" name="answer1" value="<?php echo htmlspecialchars($answer1); ?>">
+                    <input type="text" class="answer" id="answer2" name="answer2" value="<?php echo htmlspecialchars($answer2); ?>">
+                    <input type="text" class="answer" id="answer3" name="answer3" value="<?php echo htmlspecialchars($answer3); ?>">
+                    <input type="text" class="answer" id="answer4" name="answer4" value="<?php echo htmlspecialchars($answer4); ?>">
+                </div>
+                <div class="correct_answer">
+                    <h1 class="judul">Correct Answer</h1>
+                    <input type="text" class="answer" name="correct_choice" id="correct" value="<?php echo htmlspecialchars($correct); ?>">
+                </div>
+            </div>
+            <div class="checkbox-container">
+                <input type="submit" name="update" class="update-button" value="Update">
+            </div>
+        </form>
 
-        <h1 class="judul">Correct Answer</h1>
-        <input type="text" class="answer" name="correct_choice" id="correct" value="<?php echo htmlspecialchars($correct); ?>">
-
-        <div class="checkbox-container">
-            <input type="submit" name="update" class="update-button" value="Update">
-        </div>
-    </form>
-
-    <ul class="linkpages">
-        <?php foreach ($levels as $level): ?>
-            <a href="admin.php?page=matematika2&id=<?php echo htmlspecialchars($id); ?>&level_id=<?php echo htmlspecialchars($level['level_id']); ?>" class="link">
-                <li class="linkpages-items">Soal Level <?php echo htmlspecialchars($level['level_id']); ?></li>
-            </a>
-        <?php endforeach; ?>
-    </ul>
-</main>
-
+        <ul class="linkpages">
+            <?php foreach ($levels as $level) : ?>
+                <a href="admin.php?page=matematika2&id=<?php echo htmlspecialchars($id); ?>&level_id=<?php echo htmlspecialchars($level['level_id']); ?>" class="link">
+                    <li class="linkpages-items"> <?php echo htmlspecialchars($level['level_id']); ?></li>
+                </a>
+            <?php endforeach; ?>
+        </ul>
+    </main>
