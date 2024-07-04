@@ -139,7 +139,7 @@ img {
 h2 {
     margin-bottom: 4rem;
     font-size: 3rem;
-    font-weight: 700;
+    font-weight: 500;
 }
 
 #hud {
@@ -436,4 +436,88 @@ h2 {
     .modal__img {
         width: 170px;
     }
+}
+.modal-edit {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4); /* Fallback color */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-profil {
+    background-color: #2E2E2E;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    margin: auto;
+    border-radius: 10px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.button, .button2 {
+    font-size: 14px;
+    text-decoration: none;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 2rem;
+    cursor: pointer;
+    text-align: center;
+}
+
+.button {
+    background-color: #8B00FA;
+    color: #fff;
+    text-decoration: none;
+    transition: transform 150ms, box-shadow 150ms;
+}
+
+.button2 {
+    background-color: #8B00FA;
+    color: #fff;
+    text-decoration: none;
+    transition: transform 150ms, box-shadow 150ms;
+}
+
+.button:hover, .button2:hover {
+    cursor: pointer;
+    box-shadow: 0 0.4rem 1.4rem 0 #9c2ff5;
+    transform: translate(-0.1rem);
+    
+}
+
+.kirim {
+    display: inline-block;
+    color: #fff;
+    font-size: 2rem;
+    border: 0.1rem solid #150025;
+    border-radius: 2rem;
+    background-color: #8B00FA;
+    transition: transform 150ms, box-shadow 150ms;
+    padding: 1rem 1.25rem;
+    width: 20%;
+    align-items: center;
+    text-align: center; 
+    text-decoration: none; 
+   margin-top: 5%;
+}
+
+.kirim:hover {
+    cursor: pointer;
+    box-shadow: 0 0.4rem 1.4rem 0 #9c2ff5;
+    transform: translate(-0.1rem);
 }

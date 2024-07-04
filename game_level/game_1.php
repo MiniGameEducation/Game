@@ -48,7 +48,7 @@ $stmt_questions->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game</title>
-    <link rel="icon" type="image/x-icon" href="../img/Ratsel.png" />
+    <link rel="icon" type="image/x-icon" href="img/Ratsel.png" />
     <link rel="stylesheet" href="game.css">
     <script src="https://unpkg.com/feather-icons"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -71,93 +71,49 @@ $stmt_questions->close();
             </div>
             <?php while ($question_data = $result_questions->fetch_assoc()) : ?>
                 <h2 id="question"><?php echo htmlspecialchars($question_data['question']); ?></h2>
-                <div class="choice-container">
-                    <input type="button" class="choice-prefix" value="A">
-                    <input type="button" class="choice-text" data-number="1" value="<?php echo htmlspecialchars($question_data['pilihan_1']); ?>">
-                </div>
-                <div class="choice-container">
-                    <input type="button" class="choice-prefix" value="B">
-                    <input type="button" class="choice-text" data-number="2" value="<?php echo htmlspecialchars($question_data['pilihan_2']); ?>">
-                </div>
-                <div class="choice-container">
-                    <input type="button" class="choice-prefix" value="C">
-                    <input type="button" class="choice-text" data-number="3" value="<?php echo htmlspecialchars($question_data['pilihan_3']); ?>">
-                </div>
-                <div class="choice-container">
-                    <input type="button" class="choice-prefix" value="D">
-                    <input type="button" class="choice-text" data-number="4" value="<?php echo htmlspecialchars($question_data['pilihan_4']); ?>">
-                </div>
-                <a href="../tampilanUtama/mainMenu.php" class="kategori-button">Kembali</a>
+                <form method="POST" action="../database/process.php">
+                    <input type="hidden" name="start_time" value="<?php echo time(); ?>">
+                    <input type="hidden" name="kategori_id" value="<?php echo htmlspecialchars($last_selected_kategori_id); ?>">
+                    <input type="hidden" name="question_id" value="<?php echo htmlspecialchars($question_data['id']); ?>">
+                    <input type="hidden" name="level_id" value="<?php echo htmlspecialchars($level_id); ?>">
+                    <input type="hidden" id="correct_choice" value="<?php echo htmlspecialchars($question_data['correct_choice']); ?>">
+                    <div class="choice-container">
+                        <button class="choice-prefix">A</button>
+                        <input type="submit" name="answer" class="choice-text" data-number="1" value="<?php echo htmlspecialchars($question_data['pilihan_1']); ?>">
+                    </div>
+                    <div class="choice-container">
+                        <button class="choice-prefix">B</button>
+                        <input type="submit" name="answer" class="choice-text" data-number="2" value="<?php echo htmlspecialchars($question_data['pilihan_2']); ?>">
+                    </div>
+                    <div class="choice-container">
+                        <button class="choice-prefix">C</button>
+                        <input type="submit" name="answer" class="choice-text" data-number="3" value="<?php echo htmlspecialchars($question_data['pilihan_3']); ?>">
+                    </div>
+                    <div class="choice-container">
+                        <button class="choice-prefix">D</button>
+                        <input type="submit" name="answer" class="choice-text" data-number="4" value="<?php echo htmlspecialchars($question_data['pilihan_4']); ?>">
+                    </div>
+                </form>
             <?php endwhile; ?>
         </div>
-
     </div>
 
-    <form id="answerForm" method="POST">
-        <input type="hidden" name="answer" id="answerInput">
-        <input type="hidden" name="start_time" id="startTimeInput" value="<?php echo time(); ?>">
-        <input type="hidden" name="kategori_id" id="kategoriIdInput" value="<?php echo htmlspecialchars($last_selected_kategori_id); ?>">
-        <input type="hidden" name="question_id" id="questionIdInput" value="<?php echo htmlspecialchars($question_data['id'] ?? ''); ?>">
-        <input type="hidden" name="level_id" id="levelIdInput" value="<?php echo htmlspecialchars($level_id); ?>">
-    </form>
+    <div class="modal-edit" id="myModal">
+        <div class="modal-profil">
+            <div class="modal-close close-modal" title="Close"></div>
+            <h1 class="modal-title">Selamat Anda Dinyatakan Tidak Naik Kelas</h1>
+            <p class="modal-p">Skor : </p>
+            <div class="button-container">
+                <a href="game_1.php" class="button">Coba Lagi</a>
+                <a href="user.php" class="button2">Keluar</a>
+            </div>
+        </div>
+    </div>
 
     <script>
         feather.replace();
     </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const choiceButtons = document.querySelectorAll('.choice-text');
-            const startTime = Math.floor(Date.now() / 1000);
-
-            choiceButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    console.log('Event listener dipanggil'); // Tambahkan ini untuk memeriksa apakah event listener terpanggil saat tombol diklik
-                    const selectedChoice = this;
-                    const answer = selectedChoice.value;
-                    document.getElementById('answerInput').value = answer;
-                    document.getElementById('startTimeInput').value = startTime;
-
-                    // Menampilkan warna sementara
-                    const allChoices = document.querySelectorAll('.choice-text');
-                    allChoices.forEach(choice => choice.disabled = true);
-                    selectedChoice.classList.add('selected');
-
-                    // Kirim data jawaban menggunakan AJAX
-                    const xhr = new XMLHttpRequest();
-                    xhr.open('POST', '../database/process.php', true);
-                    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-                    xhr.onload = function() {
-                        if (xhr.status === 200) {
-                            const response = JSON.parse(xhr.responseText);
-                            if (response.status === 'success') {
-                                selectedChoice.classList.add('correct');
-                            } else {
-                                selectedChoice.classList.add('incorrect');
-                            }
-
-                            setTimeout(function() {
-                                if (response.status === 'success') {
-                                    window.location.href = '../tampilanUtama/mainMenu.php';
-                                } else {
-                                    document.getElementById('game').innerHTML += '<p class="error">Terjadi kesalahan: ' + response.message + '</p>';
-                                    hasAnswered = false;
-                                    allChoices.forEach(choice => choice.disabled = false);
-                                }
-                            }, 1000); // Waktu tunggu setelah jawaban diklik sebelum pindah halaman
-                        } else {
-                            document.getElementById('game').innerHTML += '<p class="error">Terjadi kesalahan saat mengirim permintaan.</p>';
-                            hasAnswered = false;
-                            allChoices.forEach(choice => choice.disabled = false);
-                        }
-                    };
-
-                    const formData = new FormData(document.getElementById('answerForm'));
-                    xhr.send(new URLSearchParams(formData));
-                });
-            });
-        });
-    </script>
-    <script src="level1.js"></script>
+    <script src="level.js"></script>
 </body>
 
 </html>

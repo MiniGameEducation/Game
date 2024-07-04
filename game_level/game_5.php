@@ -2,14 +2,13 @@
 // Include koneksi.php
 include '../database/koneksi.php';
 
-// Enable error reporting
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 session_start();
 
-// Redirect pengguna ke halaman login jika belum login
+
 if (!isset($_SESSION['id'])) {
     header("Location: login.php");
     exit();
@@ -17,10 +16,9 @@ if (!isset($_SESSION['id'])) {
 
 $user_id = $_SESSION['id'];
 
-// Dapatkan kategori_id dari request atau session
-$level_id = isset($_POST['level_id']) ? intval($_POST['level_id']) : 5; // Ubah $_GET menjadi $_POST jika Anda mengirimkannya melalui POST
 
-// Query untuk mengambil last_selected_kategori_id
+$level_id = isset($_POST['level_id']) ? intval($_POST['level_id']) : 5; 
+
 $sql_kategori = "SELECT last_selected_kategori_id FROM user WHERE id = ?";
 $stmt_kategori = $conn->prepare($sql_kategori);
 $stmt_kategori->bind_param("i", $user_id);
@@ -29,7 +27,7 @@ $stmt_kategori->bind_result($last_selected_kategori_id);
 $stmt_kategori->fetch();
 $stmt_kategori->close();
 
-// Query untuk mengambil pertanyaan berdasarkan kategori_id dan level_id
+
 $sql_questions = "SELECT id, question, pilihan_1, pilihan_2, pilihan_3, pilihan_4, correct_choice 
                   FROM question 
                   WHERE kategori_id = ? AND level_id = ?";
@@ -54,22 +52,21 @@ while ($row = $result_questions->fetch_assoc()) {
 
 $stmt_questions->close();
 
-// Close koneksi database
+
 $conn->close();
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game 5</title>
-    <link rel="stylesheet" href="level.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Game</title>
+    <link rel="icon" type="image/x-icon" href="img/Ratsel.png" />
+    <link rel="stylesheet" href="level5.css?v<?php echo time();?>">
     <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Changa+One:ital@0;1&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="../img/Ratsel.png" />
-
 </head>
 <body>
     
@@ -77,7 +74,7 @@ $conn->close();
         <div id="game" class="justify-center flex-column">
             <div id="hud">
                 <div id="hud-item">
-                    <a href="#modal-container" id="x"><i data-feather="x"></i></a>
+                    <a href="../tampilanUtama/mainMenu.php" id="x"><i data-feather="x"></i></a>
                     <p id="progressText" class="hud-prefix"></p>
                     <div id="progressBar">
                         <div id="progressBarFull"></div>
@@ -104,16 +101,28 @@ $conn->close();
         </div>
     </div>
 
-    <form id="answerForm" method="POST" action="level5.php" style="display: none;">
-        <input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
+    <form id="answerForm" method="POST" style="display: none;">
         <input type="hidden" name="level_id" id="levelIdInput" value="<?php echo $level_id; ?>">
         <input type="hidden" name="kategori_id" value="<?php echo $last_selected_kategori_id; ?>">
-        <div id="answersContainer"></div> <!-- Container to hold the answers -->
+        <div id="answersContainer"></div>
     </form>
 
+    <div class="modal-edit" id="myModal">
+        <div class="modal-profil">
+            <h1 class="modal-title" id="modalTitle">Skor: </h1>
+            <h1 class="modal-title" id="correctQuestionNumbers"></h1>
+            <h1 class="modal-title" id="correctAnswersText"></h1>
+            
+            <div class="button-container">
+                <button onclick="restartGame()" class="button">Coba Lagi</button>
+                <a href="../tampilanUtama/mainMenu.php" class="button2">Keluar</a>
+            </div>
+        </div>
+    </div>
+
     <script>
-    feather.replace();
-</script>
+        feather.replace();
+    </script>
 
     <script>
         const questions = <?php echo json_encode($questions); ?>;
@@ -121,8 +130,7 @@ $conn->close();
 
         function loadQuestion() {
             if (currentQuestionIndex >= questions.length) {
-                // Submit the form when all questions are answered
-                document.getElementById('answerForm').submit();
+                submitAnswers();
                 return;
             }
 
@@ -141,7 +149,6 @@ $conn->close();
         function selectAnswer(choice, questionId) {
             const answersContainer = document.getElementById('answersContainer');
             
-            // Create hidden input elements for question ID and answer
             const questionIdInput = document.createElement('input');
             questionIdInput.type = 'hidden';
             questionIdInput.name = 'question_id[]';
@@ -152,18 +159,46 @@ $conn->close();
             answerInput.name = 'answer[]';
             answerInput.value = choice;
 
-            // Append hidden inputs to the answers container
             answersContainer.appendChild(questionIdInput);
             answersContainer.appendChild(answerInput);
-            
 
             currentQuestionIndex++;
             loadQuestion();
         }
 
-        document.addEventListener('DOMContentLoaded', loadQuestion);
-    </script>
+        function submitAnswers() {
+            const formData = new FormData(document.getElementById('answerForm'));
 
-  
+            fetch('level5.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    document.getElementById('modalTitle').textContent = `Skor: ${data.score}`;
+                    document.getElementById('correctAnswersText').textContent = `Benar ${data.correct_answers} soal`;
+
+                    
+                    const correctQuestionNumbers = data.correct_question_numbers.join(', ');
+                    document.getElementById('correctQuestionNumbers').textContent = `Pertanyaan yang benar: ${correctQuestionNumbers}`;
+
+                    document.getElementById('myModal').classList.add('show-modal');
+                } else {
+                    alert('Error: ' + data.message);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        function restartGame() {
+            currentQuestionIndex = 0;
+            document.getElementById('answersContainer').innerHTML = '';
+            document.getElementById('myModal').classList.remove('show-modal');
+            loadQuestion();
+        }
+
+        document.addEventListener('DOMContentLoaded', loadQuestion);
+    </script>  
 </body>
 </html>
