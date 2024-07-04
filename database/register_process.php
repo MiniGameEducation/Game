@@ -57,11 +57,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Insert into the user table
+<<<<<<< HEAD
     $sql_user = "INSERT INTO user (username, email, password, foto, score) VALUES ('$reg_username', '$reg_email', '$reg_password', '$foto', 'user')";
     if ($conn->query($sql_user) === TRUE) {
         $response["success"] = true;
         $response["message"] = "Registration successful.";
         header("location:../index.php"); // Remove single quotes
+=======
+    $sql_user = "INSERT INTO user (username, email, password, foto) VALUES ('$reg_username', '$reg_email', '$reg_password', '$foto')";
+    if ($conn->query($sql_user) === TRUE) {
+        $response["success"] = true;
+        $response["message"] = "Registration successful.";
+        header("location: ../index.php"); // Remove single quotes
+>>>>>>> nizar
         exit();
     } else {
         $response["success"] = false;

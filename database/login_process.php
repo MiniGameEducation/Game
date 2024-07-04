@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['username'] = $username;
         $response["success"] = true;
         $response["message"] = "Login berhasil.";
-        header("Location:../tampilanUtama/mainMenu.php");
+        header("Location: ../tampilanUtama/mainMenu.php");
         exit();
     } else {
         $response["success"] = false;

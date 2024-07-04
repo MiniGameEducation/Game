@@ -7,8 +7,11 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 // Mulai atau lanjutkan sesi
+<<<<<<< HEAD
 session_start();
 
+=======
+>>>>>>> nizar
 // Ambil data leaderboard dari database
 $sql = "SELECT username, score FROM user ORDER BY score DESC";
 $result = $conn->query($sql);
@@ -45,4 +48,8 @@ if ($result->num_rows > 0) {
 } else {
     echo "Leaderboard is empty.";
 }
+<<<<<<< HEAD
 ?>
+=======
+?>
+>>>>>>> nizar
