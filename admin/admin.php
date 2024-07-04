@@ -93,24 +93,52 @@ for ($i = 1; $i <= $lastCompletedLevel + 1; $i++) {
                     break;
                 case 'matematika':
                     include "page/matematika.php";
+                    include "page/matematika2.php";
+                    include "page/matematika3.php";
+                    include "page/matematika4.php";
+                    include "page/matematika5.php";
                     break;
                 case 'fisika':
                     include "page/fisika.php";
+                    include "page/fisika2.php";
+                    include "page/fisika3.php";
+                    include "page/fisika4.php";
+                    include "page/fisika5.php";
                     break;
                 case 'bahasa':
                     include "page/bahasa.php";
+                    include "page/bahasa2.php";
+                    include "page/bahasa3.php";
+                    include "page/bahasa4.php";
+                    include "page/bahasa5.php";
                     break;
                 case 'ilmu sosial':
                     include "page/ilmusosial.php";
+                    include "page/ilmusosial2.php";
+                    include "page/ilmusosial3.php";
+                    include "page/ilmusosial4.php";
+                    include "page/ilmusosial5.php";
                     break;
                 case 'teknologi dan komputer':
                     include "page/tekompu.php";
+                    include "page/tekompu2.php";
+                    include "page/tekompu3.php";
+                    include "page/tekompu4.php";
+                    include "page/tekompu5.php";
                     break;
                 case 'ekonomi':
                     include "page/ekonomi.php";
+                    include "page/ekonomi2.php";
+                    include "page/ekonomi3.php";
+                    include "page/ekonomi4.php";
+                    include "page/ekonomi5.php";
                     break;
                 case 'biologi':
                     include "page/biologi.php";
+                    include "page/biologi2.php";
+                    include "page/biologi3.php";
+                    include "page/biologi4.php";
+                    include "page/biologi5.php";
                     break;
                 default:
                     echo "<script>alert('Maaf. Halaman tidak ditemukan!'); window.location.href = 'admin.php';</script>";

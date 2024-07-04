@@ -2,7 +2,7 @@
 include "../database/koneksi.php";
 
 // Ambil ID pertanyaan dari parameter URL
-$id = isset($_GET['id']) && is_numeric($_GET['id']) ? intval($_GET['id']) : 32;
+$id = $_GET ['id']??10;
 
 // Query untuk mengambil pertanyaan berdasarkan ID
 $sql_question = "SELECT * FROM question WHERE id = $id";
@@ -33,15 +33,16 @@ $conn->close();
 
 <main class="user-table">
     <form action="../database/update.php" method="post" class="questions_form">
-        <input type="hidden" name="id" value="<?php echo htmlspecialchars($id); ?>">
-        <h1 class="judul">Pertanyaan 2</h1>
+        <input type="hidden" name="id" value="<?php echo htmlspecialchars($id ?? ''); ?>">
+        <h1 class="judul">Pertanyaan 4</h1>
         <input type="text" class="questions" id="question" name="question" value="<?php echo htmlspecialchars($question ?? ''); ?>">
 
         <div class="answer_input">
             <div class="answer_input_items">
                 <h1 class="judul">Jawaban</h1>
                 <input type="text" class="answer" id="answer1" name="answer1" value="<?php echo htmlspecialchars($answer1 ?? ''); ?>">
-
+                <input type="text" class="answer" id="answer2" name="answer2" value="<?php echo htmlspecialchars($answer2 ?? ''); ?>">
+               
             </div>
             <div class="correct_answer">
                 <h1 class="judul">Correct Answer</h1>
